@@ -654,6 +654,16 @@
     text-transform: uppercase;
   }
 
+  /* النصوص العربية داخل العناصر ذات الخط الأجنبي: خط عربي بدون تباعد حتى لا تتقطع الحروف */
+  .section-number [data-ar],
+  .hero-role [data-ar],
+  .cert-issuer [data-ar],
+  .contact-card .label [data-ar] {
+    font-family: 'Cairo', sans-serif;
+    letter-spacing: 0;
+    font-weight: 700;
+  }
+
   .section-header {
     text-align: center;
     margin-bottom: 5rem;
@@ -1596,7 +1606,7 @@
       <div class="section-divider">
         <span class="divider-line"></span>
         <span class="divider-dot"></span>
-        <span class="section-number">01 — <span data-ar>عني</span><span data-en>About</span></span>
+        <span class="section-number"><span data-ar>عني</span><span data-en>About</span></span>
         <span class="divider-dot"></span>
         <span class="divider-line"></span>
       </div>
@@ -1655,7 +1665,7 @@
       <div class="section-divider">
         <span class="divider-line"></span>
         <span class="divider-dot"></span>
-        <span class="section-number">02 — <span data-ar>التعليم</span><span data-en>Education</span></span>
+        <span class="section-number"><span data-ar>التعليم</span><span data-en>Education</span></span>
         <span class="divider-dot"></span>
         <span class="divider-line"></span>
       </div>
@@ -1694,7 +1704,7 @@
       <div class="section-divider">
         <span class="divider-line"></span>
         <span class="divider-dot"></span>
-        <span class="section-number">03 — <span data-ar>الخبرة</span><span data-en>Experience</span></span>
+        <span class="section-number"><span data-ar>الخبرة</span><span data-en>Experience</span></span>
         <span class="divider-dot"></span>
         <span class="divider-line"></span>
       </div>
@@ -1763,7 +1773,7 @@
       <div class="section-divider">
         <span class="divider-line"></span>
         <span class="divider-dot"></span>
-        <span class="section-number">04 — <span data-ar>الدورات</span><span data-en>Certificates</span></span>
+        <span class="section-number"><span data-ar>الدورات</span><span data-en>Certificates</span></span>
         <span class="divider-dot"></span>
         <span class="divider-line"></span>
       </div>
@@ -1978,7 +1988,7 @@
       <div class="section-divider">
         <span class="divider-line"></span>
         <span class="divider-dot"></span>
-        <span class="section-number">05 — <span data-ar>المهارات</span><span data-en>Skills</span></span>
+        <span class="section-number"><span data-ar>المهارات</span><span data-en>Skills</span></span>
         <span class="divider-dot"></span>
         <span class="divider-line"></span>
       </div>
@@ -2041,7 +2051,7 @@
       <div class="section-divider">
         <span class="divider-line"></span>
         <span class="divider-dot"></span>
-        <span class="section-number">06 — <span data-ar>تواصل</span><span data-en>Contact</span></span>
+        <span class="section-number"><span data-ar>تواصل</span><span data-en>Contact</span></span>
         <span class="divider-dot"></span>
         <span class="divider-line"></span>
       </div>
@@ -2168,6 +2178,148 @@
       loop: true,
       alternate: true,
     });
+  </script>
+
+  <!-- ===== حزمة التفاعلية الحديثة ===== -->
+  <style id="fx-css">
+    /* شريط تقدم القراءة */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: var(--gradient-fire); z-index: 300;
+      box-shadow: 0 0 10px rgba(106, 138, 216, 0.6);
+    }
+    /* زر العودة للأعلى */
+    #back-top {
+      position: fixed; bottom: 24px; inset-inline-end: 24px;
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid var(--border-strong);
+      background: rgba(10, 15, 36, 0.75);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      color: var(--gold-1); cursor: pointer; z-index: 150;
+      opacity: 0; pointer-events: none; transform: translateY(12px);
+      transition: opacity .4s, transform .4s, background .3s, color .3s;
+      display: flex; align-items: center; justify-content: center; font-size: 19px;
+    }
+    #back-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    #back-top:hover { background: var(--gradient-gold); color: var(--black); }
+    /* ضوء يتبع المؤشر (أجهزة الفأرة فقط) */
+    #spotlight {
+      position: fixed; inset: 0; pointer-events: none; z-index: 2; opacity: 0;
+      background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(106, 138, 216, 0.09), transparent 65%);
+      transition: opacity .6s;
+    }
+    @media (hover: hover) and (pointer: fine) { #spotlight { opacity: 1; } }
+    /* لمعة البطاقات ثلاثية الأبعاد */
+    .tilt { position: relative; }
+    .tilt .tilt-glare {
+      position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%),
+        rgba(232, 237, 245, 0.09), transparent 55%);
+      opacity: 0; transition: opacity .3s;
+    }
+    .tilt:hover .tilt-glare { opacity: 1; }
+    /* وميض خفيف على عنوان الواجهة */
+    .hero h1 .gold-text {
+      background-size: 200% auto;
+      animation: fxShimmer 5s linear infinite;
+    }
+    @keyframes fxShimmer { to { background-position: 200% center; } }
+    @media (prefers-reduced-motion: reduce) {
+      #spotlight { display: none; }
+      .hero h1 .gold-text { animation: none; }
+    }
+  </style>
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div id="spotlight" aria-hidden="true"></div>
+  <button id="back-top" aria-label="العودة للأعلى">↑</button>
+  <script id="fx-js">
+    (() => {
+      const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      /* شريط التقدم + زر الأعلى */
+      const prog = document.getElementById('scroll-progress');
+      const backTop = document.getElementById('back-top');
+      addEventListener('scroll', () => {
+        const h = document.documentElement;
+        const p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+        prog.style.width = (p * 100).toFixed(2) + '%';
+        backTop.classList.toggle('show', h.scrollTop > 600);
+      }, { passive: true });
+      backTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+
+      /* الضوء التابع للمؤشر */
+      if (fine) {
+        const spot = document.getElementById('spotlight');
+        addEventListener('pointermove', e => {
+          spot.style.setProperty('--mx', e.clientX + 'px');
+          spot.style.setProperty('--my', e.clientY + 'px');
+        }, { passive: true });
+      }
+
+      /* عدّادات الأرقام عند الظهور */
+      document.querySelectorAll('.stat-num').forEach(el => {
+        const m = el.textContent.trim().match(/^([\d.]+)(\+?)$/);
+        if (!m) return;
+        const target = parseFloat(m[1]), suffix = m[2] || '';
+        const io = new IntersectionObserver(entries => {
+          entries.forEach(en => {
+            if (!en.isIntersecting) return;
+            io.disconnect();
+            const t0 = performance.now(), dur = 1400;
+            const step = now => {
+              const k = Math.min(1, (now - t0) / dur);
+              const eased = 1 - Math.pow(1 - k, 3);
+              el.textContent = (target % 1 ? (target * eased).toFixed(2) : Math.round(target * eased)) + suffix;
+              if (k < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+          });
+        }, { threshold: 0.6 });
+        io.observe(el);
+      });
+
+      /* إمالة ثلاثية الأبعاد + لمعة على البطاقات (فأرة فقط) */
+      if (fine) {
+        document.querySelectorAll('.stat-card, .cert-card, .edu-card, .skill-block, .contact-card, .exp-card').forEach(card => {
+          card.classList.add('tilt');
+          const glare = document.createElement('div');
+          glare.className = 'tilt-glare';
+          card.appendChild(glare);
+          card.addEventListener('pointermove', e => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+            card.style.transition = 'transform .12s ease-out';
+            card.style.transform =
+              `perspective(900px) rotateX(${((0.5 - y) * 5).toFixed(2)}deg) rotateY(${((x - 0.5) * 5).toFixed(2)}deg) translateY(-6px)`;
+            card.style.setProperty('--gx', (x * 100) + '%');
+            card.style.setProperty('--gy', (y * 100) + '%');
+          });
+          card.addEventListener('pointerleave', () => {
+            card.style.transition = 'transform .5s cubic-bezier(0.4, 0, 0.2, 1)';
+            card.style.transform = 'translateY(0)';
+          });
+        });
+
+        /* أزرار مغناطيسية */
+        document.querySelectorAll('.btn, .lang-toggle, #back-top').forEach(btn => {
+          btn.addEventListener('pointermove', e => {
+            const r = btn.getBoundingClientRect();
+            btn.style.transform =
+              `translate(${((e.clientX - r.left - r.width / 2) * 0.18).toFixed(1)}px, ${((e.clientY - r.top - r.height / 2) * 0.3).toFixed(1)}px)`;
+          });
+          btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
+        });
+
+        /* انجراف ناعم لصورة الواجهة مع التمرير */
+        const photo = document.querySelector('.hero-photo');
+        addEventListener('scroll', () => {
+          if (photo && scrollY < innerHeight) {
+            photo.style.transform = `translateY(${(scrollY * 0.05).toFixed(1)}px)`;
+          }
+        }, { passive: true });
+      }
+    })();
   </script>
 </body>
 </html>
