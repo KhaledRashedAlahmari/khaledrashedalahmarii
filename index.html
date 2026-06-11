@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>خالد الأحمري — Marketing & International Business</title>
-<meta name="description" content="Khaled Rashed Alahmari — Marketing & International Business student seeking Summer 2026 Co-op Internship">
+<meta name="description" content="Khaled Rashed Alahmari — Marketing & International Business graduate, Marketing Specialist at Siniora Food Industries">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -143,6 +143,21 @@
   }
 
   html[lang="en"] .logo::after { right: auto; left: -8px; }
+
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .nav-company-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 0 12px rgba(192, 200, 220, 0.25);
+  }
 
   .nav-links {
     display: flex;
@@ -749,6 +764,8 @@
     border-color: var(--gold-2);
     box-shadow: 0 25px 50px rgba(100, 130, 200, 0.2);
   }
+
+  .stat-link { cursor: pointer; }
 
   .stat-num {
     font-family: 'Inter', 'Cairo', sans-serif;
@@ -1439,6 +1456,28 @@
     .cert-card:hover, .edu-card:hover, .skill-block:hover,
     .stat-card:hover, .contact-card:hover { transform: none; }
   }
+
+  /* عرض الدائرة المتحركة بأنيمي v4 */
+  .circuit-showcase {
+    width: 100%;
+    max-width: 1100px;
+    margin: 60px auto 20px;
+    padding: 0 24px;
+    pointer-events: none;
+  }
+  .circuit-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    filter: drop-shadow(0 0 14px rgba(192, 200, 220, 0.25));
+  }
+  .circuit-svg .car {
+    filter: drop-shadow(0 0 10px rgba(240, 244, 251, 0.9));
+  }
+  @media (max-width: 768px) {
+    .circuit-showcase { margin: 40px auto 10px; }
+  }
 </style>
 </head>
 <body>
@@ -1447,7 +1486,10 @@
   <div class="bg-grain"></div>
 
   <nav>
-    <div class="logo">KA</div>
+    <div class="logo-wrap">
+      <div class="logo">KA</div>
+      <img src="siniora-logo.png" alt="Siniora Food Industries" class="nav-company-logo">
+    </div>
     <ul class="nav-links">
       <li><a href="#about"><span data-ar>عني</span><span data-en>About</span></a></li>
       <li><a href="#education"><span data-ar>التعليم</span><span data-en>Education</span></a></li>
@@ -1469,12 +1511,12 @@
     <div class="hero-grid">
       <div class="hero-content">
         <div class="hero-tag">
-          <span data-ar>متاح للتدريب الصيفي</span>
-          <span data-en>Available for Summer Co-op</span>
+          <span data-ar>اعمل حالياً في شركة سنيورة للمنتجات الغذائية</span>
+          <span data-en>Currently working at Siniora Food Industries</span>
         </div>
 
         <div class="hero-role">
-          <span data-ar>طالب تسويق وإدارة أعمال دولية</span>
+          <span data-ar>تسويق وإدارة أعمال دولية</span>
           <span data-en>Marketing & International Business</span>
         </div>
 
@@ -1484,8 +1526,8 @@
         </h1>
 
         <p class="hero-bio">
-          <span data-ar>أمزج بين <strong>شغف التسويق</strong> وفهم عميق لـ<strong>سلوك المستهلك</strong> من خلفية في علم النفس، مع مهارات حديثة في <strong>تحليل البيانات</strong> والذكاء الاصطناعي.</span>
-          <span data-en>Bridging <strong>marketing passion</strong> with deep <strong>consumer behavior</strong> insights from a Psychology background, paired with modern skills in <strong>data analytics</strong> and AI.</span>
+          <span data-ar><strong>أمزج بين شغف التسويق وفهم عميق لـسلوك المستهلك من خلفية في علم النفس، مع مهارات حديثة في تحليل البيانات والذكاء الاصطناعي.</strong></span>
+          <span data-en><strong>Bridging marketing passion with deep consumer behavior insights from a Psychology background, paired with modern skills in data analytics and AI.</strong></span>
         </p>
 
         <div class="hero-cta">
@@ -1528,6 +1570,39 @@
     </div>
   </section>
 
+  <!-- CIRCUIT SHOWCASE (anime.js v4) -->
+  <section class="circuit-showcase" aria-hidden="true">
+    <svg class="circuit-svg" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="circuit-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#4a72c4" stop-opacity="0"/>
+          <stop offset="20%" stop-color="#c0c8dc"/>
+          <stop offset="50%" stop-color="#f0f4fb"/>
+          <stop offset="80%" stop-color="#c0c8dc"/>
+          <stop offset="100%" stop-color="#4a72c4" stop-opacity="0"/>
+        </linearGradient>
+        <radialGradient id="car-glow">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+          <stop offset="40%" stop-color="#e8edf5" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#4a72c4" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- المسار المرئي (يُرسم + يتحول شكله) -->
+      <path class="circuit circuit-a"
+            d="M 50 100 C 150 30 250 30 400 100 C 550 170 650 170 750 100"
+            fill="none" stroke="url(#circuit-grad)" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- الشكل الهدف للتحوّل (مخفي) -->
+      <path class="circuit-b"
+            d="M 50 100 C 150 170 250 170 400 100 C 550 30 650 30 750 100"
+            fill="none" stroke="none" style="visibility:hidden"/>
+
+      <!-- النقطة المتحركة على المسار -->
+      <circle class="car" cx="0" cy="0" r="9" fill="url(#car-glow)"/>
+    </svg>
+  </section>
+
   <!-- ABOUT -->
   <section id="about">
     <div class="section-header">
@@ -1547,38 +1622,33 @@
     <div class="about-grid">
       <div class="about-text">
         <p data-ar>
-          أنا خالد راشد الأحمري، طالب في الترم الأخير من بكالوريوس <span class="highlight">التسويق وإدارة الأعمال الدولية</span> في كلية جدة العالمية، بمعدل تراكمي 4.66 من 5.
+          أنا خالد راشد الأحمري، حاصل على البكالوريوس في التسويق وإدارة الأعمال الدولية من كلية جدة العالمية.
         </p>
         <p data-ar>
-          ما يميّز ملفي إنه يجمع بين عدة نقاط قوية: بكالوريوس التسويق وإدارة الأعمال الدولية، ودبلوم تدريبي في علم النفس من جامعة عين شمس، ومهارات تقنية حديثة في تحليل البيانات والذكاء الاصطناعي. هذا المزيج يخليني أفهم <strong>سلوك المستهلك</strong> من زاويتين: الإنسانية والرقمية.
+          ما يميّز ملفي إنه يجمع بين عدة نقاط قوية: بكالوريوس التسويق وإدارة الأعمال الدولية، ودبلوم تدريبي في علم النفس من جامعة عين شمس، ومهارات تقنية حديثة في تحليل البيانات والذكاء الاصطناعي. هذا المزيج يخليني أفهم سلوك المستهلك من زاويتين: الإنسانية والرقمية.
         </p>
         <p data-ar>
-          حالياً أبحث عن <span class="highlight">تدريب تعاوني صيفي</span> في مجال التسويق أو تحليل بيانات السوق، لأحوّل اللي تعلمته من نظرية إلى أثر حقيقي.
+          حالياً أعمل في شركة سنيورة للمنتجات الغذائية.
         </p>
 
         <p data-en>
-          I'm Khaled Rashed Alahmari, a final-term student of <span class="highlight">Marketing & International Business Management</span> at Jeddah International University, with a GPA of 4.66/5.
+          I'm Khaled Rashed Alahmari, holding a Bachelor's degree in Marketing & International Business Management from Jeddah International University.
         </p>
         <p data-en>
-          What sets my profile apart is the combination of several strong assets: a Bachelor's in Marketing & International Business Management, a Training Diploma in Psychology from Ain Shams University, and modern technical skills in data analytics and AI. This blend lets me understand <strong>consumer behavior</strong> from two angles: the human and the digital.
+          What sets my profile apart is the combination of several strong assets: a Bachelor's in Marketing & International Business Management, a Training Diploma in Psychology from Ain Shams University, and modern technical skills in data analytics and AI. This blend lets me understand consumer behavior from two angles: the human and the digital.
         </p>
         <p data-en>
-          Currently seeking a <span class="highlight">Summer Co-op Internship</span> in marketing or market data analytics — to translate theory into real impact.
+          Currently working at Siniora Food Industries.
         </p>
       </div>
 
       <div class="stats-grid">
-        <div class="stat-card">
-          <span class="stat-num">4.66</span>
-          <span class="stat-label" data-ar>المعدل من 5</span>
-          <span class="stat-label" data-en>GPA out of 5</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num">14+</span>
+        <div class="stat-card stat-link" onclick="document.getElementById('certificates').scrollIntoView({behavior:'smooth'})">
+          <span class="stat-num">16+</span>
           <span class="stat-label" data-ar>دورة معتمدة</span>
           <span class="stat-label" data-en>Certified Courses</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-link" onclick="document.getElementById('education').scrollIntoView({behavior:'smooth'})">
           <span class="stat-num">2</span>
           <span class="stat-label" data-ar>شهادة جامعية</span>
           <span class="stat-label" data-en>University Credentials</span>
@@ -1617,13 +1687,6 @@
           <span data-ar>كلية جدة العالمية</span>
           <span data-en>Jeddah International University</span>
         </div>
-        <div class="edu-meta">
-          <span class="edu-meta-item gpa-badge">GPA 4.66 / 5</span>
-          <span class="edu-meta-item">
-            <span data-ar>متوقع التخرج 2026</span>
-            <span data-en>Expected 2026</span>
-          </span>
-        </div>
       </div>
 
       <div class="edu-card">
@@ -1633,12 +1696,6 @@
         <div class="edu-uni">
           <span data-ar>جامعة عين شمس</span>
           <span data-en>Ain Shams University</span>
-        </div>
-        <div class="edu-meta">
-          <span class="edu-meta-item">
-            <span data-ar>تخرّج 2019</span>
-            <span data-en>Graduated 2019</span>
-          </span>
         </div>
       </div>
     </div>
@@ -1658,6 +1715,32 @@
         <span data-ar>الخبرة <span class="gold-text italic-style">العملية</span></span>
         <span data-en>Professional <span class="gold-text italic-style">Experience</span></span>
       </h2>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-title">
+          <h3 data-ar>أخصائي تسويق</h3>
+          <h3 data-en>Marketing Specialist</h3>
+          <div class="exp-company">
+            <span data-ar>شركة سنيورة للمنتجات الغذائية</span>
+            <span data-en>Siniora Food Industries</span>
+          </div>
+        </div>
+        <div class="exp-type">
+          <span data-ar>مستمر حتى الآن</span>
+          <span data-en>Present</span>
+        </div>
+      </div>
+      <ul class="exp-list">
+        <li data-ar>تخطيط وتنفيذ الحملات التسويقية ومتابعة مؤشرات أدائها لتحقيق أهداف العلامة التجارية.</li>
+        <li data-ar>تحليل بيانات السوق وسلوك المستهلك لدعم اتخاذ القرارات التسويقية وتطوير المنتجات.</li>
+        <li data-ar>التنسيق مع فرق المبيعات والتوزيع لتعزيز حضور المنتجات في نقاط البيع وزيادة الحصة السوقية.</li>
+
+        <li data-en>Planning and executing marketing campaigns and tracking their KPIs to achieve brand objectives.</li>
+        <li data-en>Analyzing market data and consumer behavior to support marketing decisions and product development.</li>
+        <li data-en>Coordinating with sales and distribution teams to strengthen product presence at points of sale and grow market share.</li>
+      </ul>
     </div>
 
     <div class="exp-card">
@@ -1702,8 +1785,8 @@
         <span data-en>Training <span class="gold-text italic-style">& Certifications</span></span>
       </h2>
       <p class="section-subtitle">
-        <span data-ar>14 دورة معتمدة من أبرز الجهات السعودية والعالمية</span>
-        <span data-en>14 certified courses from leading Saudi and global institutions</span>
+        <span data-ar>16 دورة معتمدة من أبرز الجهات السعودية والعالمية</span>
+        <span data-en>16 certified courses from leading Saudi and global institutions</span>
       </p>
     </div>
 
@@ -1768,6 +1851,17 @@
         </div>
       </div>
 
+      <div class="cert-card show" data-cat="marketing">
+        <div class="cert-icon">🔍</div>
+        <h4 data-ar>مقدمة في تحسين محركات البحث SEO</h4>
+        <h4 data-en>Introduction to SEO</h4>
+        <div class="cert-issuer">SkillUp</div>
+        <div class="cert-tags">
+          <span class="cert-tag">SEO</span>
+          <span class="cert-tag" data-ar>تسويق</span><span class="cert-tag" data-en>Marketing</span>
+        </div>
+      </div>
+
       <div class="cert-card show" data-cat="data">
         <div class="cert-icon">📊</div>
         <h4 data-ar>تحليل البيانات باستخدام Power BI</h4>
@@ -1820,6 +1914,17 @@
         <div class="cert-tags">
           <span class="cert-tag">AI</span>
           <span class="cert-tag" data-ar>أساسيات</span><span class="cert-tag" data-en>Fundamentals</span>
+        </div>
+      </div>
+
+      <div class="cert-card show" data-cat="data">
+        <div class="cert-icon">🧩</div>
+        <h4 data-ar>بناء الذكاء الاصطناعي Building AI</h4>
+        <h4 data-en>Building AI</h4>
+        <div class="cert-issuer">University of Helsinki</div>
+        <div class="cert-tags">
+          <span class="cert-tag">AI</span>
+          <span class="cert-tag" data-ar>عالمي</span><span class="cert-tag" data-en>Global</span>
         </div>
       </div>
 
@@ -1898,12 +2003,13 @@
 
     <div class="skills-grid">
       <div class="skill-block">
-        <h3><span data-ar>البيانات والذكاء الاصطناعي</span><span data-en>Data & AI Analytics</span></h3>
+        <h3><span data-ar>البيانات والذكاء الاصطناعي</span><span data-en>Data & AI</span></h3>
         <ul class="skill-list">
           <li>Power BI</li>
           <li><span data-ar>التصوير المرئي للبيانات</span><span data-en>Data Visualization</span></li>
           <li><span data-ar>رؤى التسويق بالذكاء الاصطناعي</span><span data-en>AI-Driven Marketing Insights</span></li>
           <li><span data-ar>التحليلات التنبؤية</span><span data-en>Predictive Analytics</span></li>
+          <li><span data-ar>بناء الذكاء الاصطناعي (Building AI)</span><span data-en>Building AI</span></li>
         </ul>
       </div>
 
@@ -1914,7 +2020,8 @@
           <li><span data-ar>الاستراتيجية الرقمية</span><span data-en>Digital Strategy</span></li>
           <li><span data-ar>مبادئ التسويق العصبي</span><span data-en>Neuromarketing Principles</span></li>
           <li><span data-ar>أتمتة حملات البريد الإلكتروني</span><span data-en>Email Campaign Automation</span></li>
-          <li><span data-ar>إدارة علاقات العملاء (CRM)</span><span data-en>CRM & Market Research</span></li>
+          <li><span data-ar>إدارة علاقات العملاء (CRM)</span><span data-en>Customer Relationship Management (CRM)</span></li>
+          <li><span data-ar>تحسين محركات البحث (SEO)</span><span data-en>SEO (Search Engine Optimization)</span></li>
         </ul>
       </div>
 
@@ -1954,13 +2061,9 @@
     </div>
 
     <h2 class="contact-title">
-      <span data-ar>دعنا <span class="gold-text italic-style">نتعاون</span></span>
-      <span data-en>Let's <span class="gold-text italic-style">connect</span></span>
+      <span data-ar>وسائل <span class="gold-text italic-style">التواصل</span></span>
+      <span data-en>Contact <span class="gold-text italic-style">Channels</span></span>
     </h2>
-    <p class="contact-subtitle">
-      <span data-ar>سواء كنت تبحث عن متدرب أو موظف واعد، تواصل معي.</span>
-      <span data-en>Whether you're looking for an intern or a promising future employee, get in touch.</span>
-    </p>
 
     <div class="contact-grid">
       <a href="mailto:KhaledRashedt@gmail.com" class="contact-card">
@@ -2048,6 +2151,35 @@
         const scrolled = window.pageYOffset;
         bgText.style.transform = `translate(-50%, calc(-50% + ${scrolled * 0.3}px))`;
       }
+    });
+  </script>
+
+  <!-- anime.js v4 — circuit showcase -->
+  <script type="module">
+    import { animate, createMotionPath, createDrawable, morphTo }
+      from 'https://cdn.jsdelivr.net/npm/animejs@4.0.2/+esm';
+
+    animate('.car', {
+      ...createMotionPath('.circuit'),
+      duration: 4000,
+      ease: 'inOutQuad',
+      loop: true,
+    });
+
+    animate(createDrawable('.circuit'), {
+      draw: '0 1',
+      duration: 2500,
+      ease: 'inOutSine',
+      loop: true,
+      alternate: true,
+    });
+
+    animate('.circuit-a', {
+      d: morphTo('.circuit-b'),
+      duration: 3000,
+      ease: 'inOutQuad',
+      loop: true,
+      alternate: true,
     });
   </script>
 </body>
