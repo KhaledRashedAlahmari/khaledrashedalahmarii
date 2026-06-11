@@ -1470,26 +1470,37 @@
     .stat-card:hover, .contact-card:hover { transform: none; }
   }
 
-  /* عرض الدائرة المتحركة بأنيمي v4 */
-  .circuit-showcase {
+  /* الشعار السعودي: سيفان ونخلة — شفاف بإضاءة خفيفة تشتد عند التمرير */
+  .emblem-showcase {
     width: 100%;
-    max-width: 1100px;
+    display: flex;
+    justify-content: center;
     margin: 60px auto 20px;
-    padding: 0 24px;
-    pointer-events: none;
   }
-  .circuit-svg {
-    width: 100%;
+  .emblem-svg {
+    width: min(270px, 58vw);
     height: auto;
     display: block;
     overflow: visible;
-    filter: drop-shadow(0 0 14px rgba(192, 200, 220, 0.25));
+    opacity: 0.5;
+    filter: drop-shadow(0 0 10px rgba(192, 200, 220, 0.35));
+    transition: opacity 0.6s, filter 0.6s, transform 0.6s;
+    animation: emblemBreathe 5s ease-in-out infinite;
   }
-  .circuit-svg .car {
-    filter: drop-shadow(0 0 10px rgba(240, 244, 251, 0.9));
+  @keyframes emblemBreathe {
+    50% { opacity: 0.72; filter: drop-shadow(0 0 18px rgba(192, 200, 220, 0.55)); }
+  }
+  .emblem-svg:hover {
+    opacity: 1;
+    filter: drop-shadow(0 0 26px rgba(240, 244, 251, 0.75));
+    transform: scale(1.05);
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .emblem-svg { animation: none; }
   }
   @media (max-width: 768px) {
-    .circuit-showcase { margin: 40px auto 10px; }
+    .emblem-showcase { margin: 40px auto 10px; }
   }
 </style>
 </head>
@@ -1568,35 +1579,47 @@
   </section>
 
   <!-- CIRCUIT SHOWCASE (anime.js v4) -->
-  <section class="circuit-showcase" aria-hidden="true">
-    <svg class="circuit-svg" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet">
+  <section class="emblem-showcase" aria-hidden="true">
+    <svg class="emblem-svg" viewBox="0 0 400 370" preserveAspectRatio="xMidYMid meet">
       <defs>
-        <linearGradient id="circuit-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#4a72c4" stop-opacity="0"/>
-          <stop offset="20%" stop-color="#c0c8dc"/>
-          <stop offset="50%" stop-color="#f0f4fb"/>
-          <stop offset="80%" stop-color="#c0c8dc"/>
-          <stop offset="100%" stop-color="#4a72c4" stop-opacity="0"/>
+        <linearGradient id="emblem-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#f0f4fb"/>
+          <stop offset="45%" stop-color="#c0c8dc"/>
+          <stop offset="100%" stop-color="#8a93ab"/>
         </linearGradient>
-        <radialGradient id="car-glow">
-          <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
-          <stop offset="40%" stop-color="#e8edf5" stop-opacity="0.85"/>
-          <stop offset="100%" stop-color="#4a72c4" stop-opacity="0"/>
-        </radialGradient>
       </defs>
-
-      <!-- المسار المرئي (يُرسم + يتحول شكله) -->
-      <path class="circuit circuit-a"
-            d="M 50 100 C 150 30 250 30 400 100 C 550 170 650 170 750 100"
-            fill="none" stroke="url(#circuit-grad)" stroke-width="2" stroke-linecap="round"/>
-
-      <!-- الشكل الهدف للتحوّل (مخفي) -->
-      <path class="circuit-b"
-            d="M 50 100 C 150 170 250 170 400 100 C 550 30 650 30 750 100"
-            fill="none" stroke="none" style="visibility:hidden"/>
-
-      <!-- النقطة المتحركة على المسار -->
-      <circle class="car" cx="0" cy="0" r="9" fill="url(#car-glow)"/>
+      <g fill="none" stroke="url(#emblem-grad)" stroke-linecap="round" stroke-linejoin="round">
+        <!-- النخلة: الجذع -->
+        <path d="M 200 255 C 197 225 203 195 200 168" stroke-width="3.5"/>
+        <!-- حراشف الجذع -->
+        <path d="M 191 240 L 200 233 L 209 240" stroke-width="2"/>
+        <path d="M 192 222 L 200 215 L 208 222" stroke-width="2"/>
+        <path d="M 193 204 L 200 197 L 207 204" stroke-width="2"/>
+        <path d="M 194 186 L 200 180 L 206 186" stroke-width="2"/>
+        <!-- السعفة العلوية -->
+        <path d="M 200 165 C 196 138 204 115 200 96" stroke-width="2.5"/>
+        <!-- السعفات اليسرى -->
+        <path d="M 200 165 C 183 136 162 121 136 117" stroke-width="2.5"/>
+        <path d="M 200 165 C 172 146 138 144 112 160" stroke-width="2.5"/>
+        <path d="M 200 165 C 176 166 148 176 128 196" stroke-width="2.5"/>
+        <!-- السعفات اليمنى -->
+        <path d="M 200 165 C 217 136 238 121 264 117" stroke-width="2.5"/>
+        <path d="M 200 165 C 228 146 262 144 288 160" stroke-width="2.5"/>
+        <path d="M 200 165 C 224 166 252 176 272 196" stroke-width="2.5"/>
+        <!-- عذوق التمر -->
+        <path d="M 193 170 C 188 178 186 187 188 195" stroke-width="2"/>
+        <path d="M 207 170 C 212 178 214 187 212 195" stroke-width="2"/>
+        <!-- السيف الأول: من المقبض الأيسر إلى السن الأيمن -->
+        <path d="M 74 331 C 145 283 258 271 344 292" stroke-width="3.5"/>
+        <path d="M 344 292 L 332 302" stroke-width="3"/>
+        <path d="M 66 318 L 88 341" stroke-width="3"/>
+        <circle cx="59" cy="335" r="4.5" stroke-width="2.5"/>
+        <!-- السيف الثاني: من المقبض الأيمن إلى السن الأيسر -->
+        <path d="M 326 331 C 255 283 142 271 56 292" stroke-width="3.5"/>
+        <path d="M 56 292 L 68 302" stroke-width="3"/>
+        <path d="M 334 318 L 312 341" stroke-width="3"/>
+        <circle cx="341" cy="335" r="4.5" stroke-width="2.5"/>
+      </g>
     </svg>
   </section>
 
@@ -1629,7 +1652,7 @@
         </p>
 
         <p data-en>
-          I'm Khaled Rashed Alahmari, holding a Bachelor's degree in Marketing & International Business Management from Jeddah International University.
+          I'm Khaled Rashed Alahmari, holding a Bachelor's degree in Marketing & International Business Management from Jeddah International College.
         </p>
         <p data-en>
           What sets my profile apart is the combination of several strong assets: a Bachelor's in Marketing & International Business Management, a Training Diploma in Psychology from Ain Shams University, and modern technical skills in data analytics and AI. This blend lets me understand consumer behavior from two angles: the human and the digital.
@@ -1682,7 +1705,7 @@
         <h3 data-en>BSc. Marketing & International Business Management</h3>
         <div class="edu-uni">
           <span data-ar>كلية جدة العالمية</span>
-          <span data-en>Jeddah International University</span>
+          <span data-en>Jeddah International College</span>
         </div>
       </div>
 
@@ -2151,34 +2174,6 @@
     });
   </script>
 
-  <!-- anime.js v4 — circuit showcase -->
-  <script type="module">
-    import { animate, createMotionPath, createDrawable, morphTo }
-      from 'https://cdn.jsdelivr.net/npm/animejs@4.0.2/+esm';
-
-    animate('.car', {
-      ...createMotionPath('.circuit'),
-      duration: 4000,
-      ease: 'inOutQuad',
-      loop: true,
-    });
-
-    animate(createDrawable('.circuit'), {
-      draw: '0 1',
-      duration: 2500,
-      ease: 'inOutSine',
-      loop: true,
-      alternate: true,
-    });
-
-    animate('.circuit-a', {
-      d: morphTo('.circuit-b'),
-      duration: 3000,
-      ease: 'inOutQuad',
-      loop: true,
-      alternate: true,
-    });
-  </script>
 
   <!-- ===== حزمة التفاعلية الحديثة ===== -->
   <style id="fx-css">
